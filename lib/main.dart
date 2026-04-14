@@ -10,6 +10,38 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // Data quest disimpan dalam variable
+  final List<Map<String, dynamic>> questList = const [
+    {
+      'title': 'Mengembala Domba',
+      'description': 'Kumpulkan 10 domba di padang rumput',
+      'reward': 100,
+      'icon': Icons.pets,
+      'iconColor': Colors.green,
+    },
+    {
+      'title': 'Berburu Monster',
+      'description': 'Kalahkan 5 monster liar di hutan',
+      'reward': 250,
+      'icon': Icons.shield,
+      'iconColor': Colors.red,
+    },
+    {
+      'title': 'Mencari Ramuan',
+      'description': 'Kumpulkan 3 ramuan langka',
+      'reward': 75,
+      'icon': Icons.science,
+      'iconColor': Colors.purple,
+    },
+    {
+      'title': 'Latihan Memanah',
+      'description': 'Latihan memanah selama 30 menit',
+      'reward': 50,
+      'icon': Icons.sports_gymnastics,
+      'iconColor': Colors.blue,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,16 +62,41 @@ class MyApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HeaderWidget(name: 'Salma',role: 'Archer',level: 10,),
+              const HeaderWidget(
+                name: 'Salma',
+                role: 'Archer',
+                level: 10,
+              ),
               const SizedBox(height: 12),
               Row(
                 children: const [
-                  ChipWidget(warna: Colors.red,icon: Icons.favorite,label: "HP:",value: 100),
-                  ChipWidget(warna: Color.fromARGB(255, 32, 241, 13),icon: Icons.accessibility_new,label: "HP:",value: 99,),
+                  ChipWidget(
+                    warna: Colors.red,
+                    icon: Icons.favorite,
+                    label: "HP:",
+                    value: 100,
+                  ),
+                  SizedBox(width: 12),
+                  ChipWidget(
+                    warna: Color.fromARGB(255, 32, 241, 13),
+                    icon: Icons.bolt,
+                    label: "MP:",
+                    value: 99,
+                  ),
                 ],
               ),
-              Text("Quest List"),
-              QuestWidget()
+              const SizedBox(height: 16),
+              const Text(
+                "Quest List",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Expanded(
+                child: QuestWidget(quests: questList), // Kirim data dari luar
+              ),
             ],
           ),
         ),
